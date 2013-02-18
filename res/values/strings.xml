@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Curso Android</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="temp">Temperature</string>
+    <string name="sms">Send SMS</string>
+    <string name="list">List</string>
+
+</resources>

@@ -6,4 +6,8 @@
     <string name="temp">Temperatura</string>
     <string name="sms">Enviar SMS</string>
     <string name="list">Lista</string>
+    <string name="btn_calc">Calcular</string>
+    <string name="phone">Teléfono</string>
+    <string name="text_body">Mensaje</string>
+    <string name="btn_send">Enviar</string>
 </resources>

@@ -7,5 +7,13 @@
     <string name="temp">Temperature</string>
     <string name="sms">Send SMS</string>
     <string name="list">List</string>
+    <string name="title_activity_temp">Temperature</string>
+    <string name="tw_celsius">Celsius</string>
+    <string name="tw_farenheit">Farenheit</string>
+    <string name="btn_calc">Calculate</string>
+    <string name="title_activity_sms">SmsActivity</string>
+    <string name="phone">Phone</string>
+    <string name="text_body">Message</string>
+    <string name="btn_send">Send</string>
 
 </resources>

@@ -10,4 +10,9 @@
     <string name="phone">Teléfono</string>
     <string name="text_body">Mensaje</string>
     <string name="btn_send">Enviar</string>
+    <string name="title_activity_temp">Temperature</string>
+    <string name="tw_celsius">Celsius</string>
+    <string name="tw_farenheit">Farenheit</string>
+    <string name="title_activity_sms">Enviar un SMS</string>
+    <string name="menu_share">Compartir</string>
 </resources>

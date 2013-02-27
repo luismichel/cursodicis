@@ -1,6 +1,8 @@
 package com.luismichelmx.cursoandroid;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,13 +11,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +33,7 @@ public class SmsActivity extends Activity {
 	private String appTag = "curso android";
 	private Context appContext;
 	private Activity smsActivity;
+	private static final int CONTACT_PICKER_RESULT = 123; 
 
 	
 	@Override
@@ -69,6 +75,82 @@ public class SmsActivity extends Activity {
 		});
 		
 		
+		edit_phone.setOnLongClickListener( new OnLongClickListener(){
+
+			@Override
+			public boolean onLongClick(View arg0) {
+				// TODO Auto-generated method stub
+				Log.i(appTag, "Long click en telefono");
+				
+				Intent contactPickerIntent = new Intent( Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+				startActivityForResult( contactPickerIntent, CONTACT_PICKER_RESULT);
+				
+				
+				Log.i(appTag, ContactsContract.Contacts.CONTENT_URI.toString());
+				
+				
+				 
+				return false;
+			}
+			
+		});
+	
+		
+		
+		
+	}
+	
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		
+		switch( item.getItemId() ){
+		
+			case R.id.menu_share:
+				Log.i(appTag, "click en menu->share");
+				
+				
+				Intent sendIntent = new Intent();
+				sendIntent.setAction(Intent.ACTION_SEND);
+				sendIntent.putExtra(Intent.EXTRA_TEXT, edit_text.getText().toString());
+				sendIntent.setType("text/plain");
+				startActivity(sendIntent);
+				
+				
+				
+				return true;
+			case R.id.menu_settings:
+				Log.i(appTag, "click menu->settings");
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		
+		}
+		
+
+		
+	}
+	
+	@Override
+	public void onActivityResult(int reqCode, int resultCode, Intent data){
+		super.onActivityResult(reqCode, resultCode, data);
+		
+		if( resultCode == Activity.RESULT_OK){
+			
+			Uri contactData = data.getData();
+			
+			Log.i(appTag, "URI ="+contactData.toString());
+			
+			Cursor cursor = getContentResolver().query(contactData, null, null, null, null);
+			
+			while( cursor.moveToNext() )
+			{
+				String contactId = cursor.getString( cursor.getColumnIndex(ContactsContract.Contacts._ID));
+				
+			} 
+			
+		}
 		
 	}
 	
@@ -146,5 +228,13 @@ public class SmsActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_sms, menu);
 		return true;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

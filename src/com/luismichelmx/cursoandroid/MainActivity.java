@@ -1,6 +1,7 @@
 package com.luismichelmx.cursoandroid;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,14 +9,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
 	private String appTag = "curso Android";
 	private Button btn_temp; 
 	private Button btn_sms;
+	private ImageView im_logo;
 	
 	
 	@Override
@@ -27,6 +31,7 @@ public class MainActivity extends Activity {
 		
 		btn_temp = (Button) this.findViewById(R.id.btn_temp);
 		btn_sms = (Button)findViewById(R.id.btn_sms);
+		im_logo = (ImageView)findViewById(R.id.im_logo);
 		
 		btn_temp.setOnClickListener(new OnClickListener(){
 
@@ -55,6 +60,35 @@ public class MainActivity extends Activity {
 			}
 			
 		});
+		
+		
+		im_logo.setOnLongClickListener(new OnLongClickListener(){
+
+			@Override
+			public boolean onLongClick(View arg0) {
+				// TODO Auto-generated method stub
+				Log.i(appTag, "long click!!");
+				
+				Intent shareIntent = new Intent();
+				shareIntent.setAction(Intent.ACTION_SEND);
+				
+				
+				Uri uri = Uri.parse("android.resource://com.luismichelmx.cursoandroid/drawable/logodicis");
+				
+				shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+				shareIntent.setType("image/jpeg");
+				
+				//startActivity(shareIntent);
+				startActivity( Intent.createChooser(shareIntent, "Enviar a:") );
+				
+				
+				
+				return false;
+			}
+			
+		});
+		
+		
 		
 	}
 	

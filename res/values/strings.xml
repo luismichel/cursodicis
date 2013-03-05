@@ -16,5 +16,6 @@
     <string name="text_body">Message</string>
     <string name="btn_send">Send</string>
     <string name="menu_share">Share</string>
+    <string name="title_activity_list">ListActivity</string>
 
 </resources>

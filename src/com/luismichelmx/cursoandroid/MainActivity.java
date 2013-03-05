@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
 	private String appTag = "curso Android";
 	private Button btn_temp; 
 	private Button btn_sms;
+	private Button btn_list;
 	private ImageView im_logo;
 	
 	
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
 		
 		btn_temp = (Button) this.findViewById(R.id.btn_temp);
 		btn_sms = (Button)findViewById(R.id.btn_sms);
+		btn_list = (Button)findViewById(R.id.btn_list);
 		im_logo = (ImageView)findViewById(R.id.im_logo);
 		
 		btn_temp.setOnClickListener(new OnClickListener(){
@@ -60,6 +62,23 @@ public class MainActivity extends Activity {
 			}
 			
 		});
+		
+		
+		btn_list.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.e(appTag, "click en lista");
+				
+				Intent list_int = new Intent(v.getContext(), ListExampleActivity.class);
+				startActivity(list_int);
+				
+			}
+			
+		});
+		
+		
 		
 		
 		im_logo.setOnLongClickListener(new OnLongClickListener(){

@@ -7,8 +7,9 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -36,6 +37,10 @@
         <activity
             android:name="com.luismichelmx.cursoandroid.SmsActivity"
             android:label="@string/title_activity_sms" >
+        </activity>
+        <activity
+            android:name="com.luismichelmx.cursoandroid.ListExampleActivity"
+            android:label="@string/title_activity_list" >
         </activity>
     </application>
 

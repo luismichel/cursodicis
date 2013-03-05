@@ -147,8 +147,31 @@ public class SmsActivity extends Activity {
 			while( cursor.moveToNext() )
 			{
 				String contactId = cursor.getString( cursor.getColumnIndex(ContactsContract.Contacts._ID));
+				String hasPhone = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+				Log.i(appTag, hasPhone);
+				
+				//Si tiene numeros de telefono
+				if( hasPhone.contains("1"))
+				{
+					
+					Cursor phones = getContentResolver().query( ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, 
+							ContactsContract.CommonDataKinds.Phone.CONTACT_ID+" = "+contactId, null, null);
+					
+					while( phones.moveToNext())
+					{
+						String phoneNumber = phones.getString( phones.getColumnIndex( ContactsContract.CommonDataKinds.Phone.NUMBER));
+						Log.i(appTag, phoneNumber);
+						
+						edit_phone.setText(phoneNumber);
+						
+					}
+					phones.close();
+					
+				}
+				
 				
 			} 
+			cursor.close();
 			
 		}
 		

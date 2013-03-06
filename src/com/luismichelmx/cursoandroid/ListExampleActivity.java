@@ -16,9 +16,9 @@ import android.widget.SimpleAdapter;
 
 public class ListExampleActivity extends Activity {
 
-	private ArrayList<String> months = new ArrayList<String>();
+	private ArrayList<Locations> locations = new ArrayList<Locations>();
 	private ListView lv;
-	private ArrayAdapter<String> monthAdapter;
+	private ArrayAdapter<Locations> locationsAdapter;
 	private String appTag = "curso android";
 	
 	@Override
@@ -28,22 +28,17 @@ public class ListExampleActivity extends Activity {
 		
 		lv = (ListView) findViewById(R.id.listView1);
 		
-		months.add("enero");
-		months.add("febrero");
-		months.add("marzo");
-		months.add("abril");
-		months.add("mayo");
-		months.add("junio");
-		months.add("julio");
-		months.add("agosto");
-		months.add("septiembre");
-		months.add("octubre");
-		months.add("noviembre");
-		months.add("diciembre");
+		locations.add( new Locations( android.R.drawable.ic_btn_speak_now, "Palo Blanco", "Salamanca") );
+		locations.add( new Locations( android.R.drawable.ic_btn_speak_now, "Las Reinas", "Salamanca") );
+		locations.add( new Locations( android.R.drawable.ic_btn_speak_now, "Centro", "Salamanca") );
+		locations.add( new Locations( android.R.drawable.ic_btn_speak_now, "Infonavit 1", "Salamanca") );
+		locations.add( new Locations( android.R.drawable.ic_btn_speak_now, "Bellavista", "Salamanca") );
+		locations.add( new Locations( android.R.drawable.ic_btn_speak_now, "Humanista", "Salamanca") );
 		
-		monthAdapter = new ArrayAdapter<String>( this, android.R.layout.simple_list_item_1, months);
 		
-		lv.setAdapter(monthAdapter);
+		locationsAdapter = new LocationsAdapter( this, R.layout.list_item, locations);
+		
+		lv.setAdapter(locationsAdapter);
 		
 		lv.setOnItemClickListener(new OnItemClickListener(){
 
@@ -51,7 +46,7 @@ public class ListExampleActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				Log.i(appTag, "Click en posicion "+arg2+" dato: "+months.get(arg2));
+				Log.i(appTag, "Click en posicion "+arg2+" dato: "+locations.get(arg2).getLocation());
 			}
 			
 		});
